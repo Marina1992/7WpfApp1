@@ -1,0 +1,89 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:MyCommands.Exit" Executed="ExitExecuted" CanExecute="ExitCanExecute"/>
+        
+        <CommandBinding Command="Open" Executed="OpenExecuted"/>
+        <CommandBinding Command="Save" Executed="SaveExecuted"/>
+        
+    </Window.CommandBindings>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Padding="5">
+            <MenuItem Header="_Файл" >
+                <MenuItem  Header="_Открыть" Command="ApplicationCommands.Open"/>
+                <MenuItem  Header="_Сохранить" Command="Save"/>
+                <Separator/>
+                <MenuItem  Header="_Выход" Command="local:MyCommands.Exit"/>
+            </MenuItem>
+            <MenuItem Header="Правка">
+                <MenuItem Header="Копировать" Command="Copy"/>
+               <MenuItem Header="Вставить" Command="Paste"/>
+            </MenuItem >
+
+
+        </Menu>
+
+        <ToolBarTray Grid.Row="1">
+            <ToolBar Margin="5" Padding="5" >
+                <ComboBox Margin="5" Padding="5" SelectedIndex="0" Width="200" SelectionChanged="ComboBox_SelectionChanged">
+                    <TextBlock  Text="Arial"/>
+                    <TextBlock  Text="Times New Roman "/>
+                    <TextBlock  Text="Verdana"/>
+                </ComboBox>
+                <ComboBox Margin="5" Padding="5" SelectedIndex="2" Width="50"  SelectionChanged="cmbFontSize_SelectionChanged"   >
+                    <TextBlock  Text="12"/>
+                    <TextBlock  Text="14 "/>
+                    <TextBlock  Text="16"/>
+                </ComboBox>
+
+            </ToolBar>
+            <ToolBar Margin="5" Padding="5" >
+                <Button x:Name="boldButton" 
+                               Click="boldButton_Click_1"  >
+                    <Image Source="Data/text_bold.png"/>
+
+                </Button>
+                <Separator/>
+                <Button x:Name="italicButton" Click="italicButton_Click"  >
+                    <Image Source="Data/text_italic.png"/>
+
+                </Button>
+                <Separator/>
+
+                <Button x:Name="Underline" Click="Underline_Click" 
+                               
+                              >
+                    <Image Source="Data/text_underline.png"/>
+
+                </Button>
+            </ToolBar>
+            <ToolBar Margin="5" Padding="5" >
+                <StackPanel VerticalAlignment="Center">
+                    <RadioButton Content="Черный" IsChecked="True" Checked="RadioButton_Checked1"  >
+
+                    </RadioButton>
+                    <RadioButton Content="Красный" Checked="RadioButton_Checked" >
+
+                    </RadioButton>
+                </StackPanel>
+            </ToolBar>
+
+        </ToolBarTray>
+        <TextBox x:Name="textBox" Grid.Row="2" Margin="5" Padding="5" FontSize="16" FontFamily="Arial" TextWrapping="Wrap"></TextBox>
+    </Grid>
+</Window>
